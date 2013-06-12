@@ -58,7 +58,7 @@ echo "-----> Building Gradle app..."
 echo "       WARNING: The Gradle buildpack is currently in Beta."
 echo "-----> executing $BUILDCMD"
 
-ls -l
+ls -l /srv/tmp/buildpack-cache/gradle-1.6/bin/gradle
 
 $BUILDCMD 2>&1 | sed -u 's/^/       /'
 
