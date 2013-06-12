@@ -11,7 +11,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 GRADLE_DIST="gradle-1.6"
-GRADLE_TASK="stage"
+GRADLE_TASK="build"
 
 curl --silent --location http://heroku-jvm-common.s3.amazonaws.com/jvm-buildpack-common.tar.gz | tar xz
 . bin/java
@@ -44,7 +44,7 @@ else
     curl --silent --location $GRADLE_URL | jar -x
     echo " done"
   fi
-  BUILDCMD="gradle -I $OPT_DIR/init.gradle --debug"
+  BUILDCMD="gradle -I $OPT_DIR/init.gradle"
 fi
 
 BUILDCMD="$BUILDCMD $GRADLE_TASK"
@@ -59,7 +59,6 @@ echo "       WARNING: The Gradle buildpack is currently in Beta."
 echo "-----> executing $BUILDCMD"
 
 chmod +x /srv/tmp/buildpack-cache/gradle-1.6/bin/gradle
-ls -l /srv/tmp/buildpack-cache/gradle-1.6/bin/gradle
 
 $BUILDCMD 2>&1 | sed -u 's/^/       /'
 
