@@ -111,7 +111,7 @@ function run_npm() {
 }
 
 # install dependencies via package.json if available
-if [ -f "${BUILD_DIR}/package.json" ]; then
+if [ -f $BUILD_DIR/package.json ]; then
   echo "Installing Node.js dependencies" | indent
   bootstrap_node=$(mktmpdir bootstrap_node)
   install_nodejs $bootstrap_node
