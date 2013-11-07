@@ -112,9 +112,9 @@ function run_npm() {
 
 function run_grunt() {
   command="$1"
-  GRUNT_PATH="$BUILD_DIR/node_modules/grunt-cli/bin/grunt"
+  GRUNT_BIN="$BUILD_DIR/node_modules/grunt-cli/bin/grunt"
   echo $GRUNT_PATH $command
-  $GRUNT_PATH/grunt $command
+  $GRUNT_BIN $command
 }
 
 # install dependencies via package.json if available
