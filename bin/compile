@@ -112,7 +112,7 @@ function run_npm() {
 
 function run_grunt() {
   command="$1"
-  GRUNT_PATH=$($VENDORED_NODE/bin/node $VENDORED_NPM/cli.js bin)
+  GRUNT_PATH="$BUILD_DIR/node_modules/grunt-cli/bin/grunt"
   echo $GRUNT_PATH $command
   $GRUNT_PATH/grunt $command
 }
@@ -125,7 +125,7 @@ if [ -f ${BUILD_DIR}/package.json ]; then
   run_npm "install --production"
   run_npm "rebuild"
   echo "Dependencies installed" | indent
-  
+
   # build JavaScript application with grunt
   run_grunt "clean build compile"
 
