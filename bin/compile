@@ -11,7 +11,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 GRADLE_DIST="gradle-1.7"
-GRADLE_TASK="build"
+GRADLE_TASK="build buildJsApp compileJsApp"
 
 NODE_VERSION="0.10.17"
 NPM_VERSION="1.3.8"
