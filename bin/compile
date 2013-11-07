@@ -96,7 +96,7 @@ function install_nodejs() {
   package_download "nodejs" "${NODE_VERSION}" "${VENDORED_NODE}"
   package_download "npm" "${NPM_VERSION}" "${VENDORED_NPM}"
   chmod +x $VENDORED_NODE/bin/node
-  echo "Installed Node.js to ${VENDORED_NODE}"
+  echo "Installed Node.js to ${VENDORED_NODE}" | indent
 }
 
 function run_npm() {
@@ -113,8 +113,9 @@ function run_npm() {
 
 function run_grunt() {
   command="$1"
-  GRUNT_BIN="$BUILD_DIR/node_modules/grunt-cli/bin/grunt"
-  echo $GRUNT_PATH $command
+  # workaround
+  GRUNT_BIN="/srv/tmp/builddir/node_modules/grunt-cli/bin/grunt"
+  echo $GRUNT_BIN $command | indent
   $GRUNT_BIN $command
 }
 
