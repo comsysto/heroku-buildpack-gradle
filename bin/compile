@@ -96,6 +96,7 @@ function install_nodejs() {
   package_download "nodejs" "${NODE_VERSION}" "${VENDORED_NODE}"
   package_download "npm" "${NPM_VERSION}" "${VENDORED_NPM}"
   chmod +x $VENDORED_NODE/bin/node
+  echo "Installed Node.js to ${VENDORED_NODE}"
 }
 
 function run_npm() {
