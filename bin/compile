@@ -122,7 +122,7 @@ if [ -f ${BUILD_DIR}/package.json ]; then
   echo "Installing Node.js dependencies" | indent
   bootstrap_node=$(mktmpdir bootstrap_node)
   install_nodejs $bootstrap_node
-  run_npm "install --production"
+  run_npm "install"
   run_npm "rebuild"
   echo "Dependencies installed" | indent
 
