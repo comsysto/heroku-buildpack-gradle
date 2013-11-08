@@ -133,6 +133,12 @@ echo "-----> Building node runtime environment"
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\"\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\"" > $BUILD_DIR/.profile.d/nodejs.sh
 
+# install compass
+echo "-----> Installing Compass"
+export GEM_HOME=$BUILD_DIR/.gem/ruby/1.9.1
+PATH="$GEM_HOME/bin:$PATH"
+HOME=$BUILD_DIR gem install compass --user-install --no-rdoc --no-ri
+
 # install dependencies via package.json if available
 if [ -f ${BUILD_DIR}/package.json ]; then
   echo "Installing Node.js dependencies" | indent
