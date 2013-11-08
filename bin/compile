@@ -4,6 +4,10 @@
 # fail fast
 set -e
 
+# debug
+set -x
+
+
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 OPT_DIR=$(cd $BIN_DIR/../opt; pwd) 
 # parse args
@@ -115,10 +119,14 @@ function run_npm() {
 
 function run_grunt() {
   command="$1"
-  # workaround
-  GRUNT_BIN="/srv/tmp/builddir/node_modules/grunt-cli/bin/grunt"
-  echo $GRUNT_BIN $command | indent
-  $GRUNT_BIN $command
+  
+  cd $BUILD_DIR
+  HOME="$BUILD_DIR" $VENDORED_NODE/bin/node $BUILD_DIR/node_modules/grunt/lib/grunt.js $command 2>&1 | indent
+
+  if [ "${PIPESTATUS[*]}" != "0 0" ]; then
+    echo " !     Failed run grunt $command"
+    exit 1
+  fi
 }
 
 echo "-----> Building node runtime environment"
@@ -142,8 +150,8 @@ if [ -f $BUILD_DIR/Gruntfile.js ]; then
   # make sure that grunt and grunt-cli are installed locally
   run_npm "install grunt-cli"
   run_npm "install grunt"
-  echo "-----> Found Gruntfile, running grunt $GRUNT_TASKS"
-  $BUILD_DIR/node_modules/.bin/grunt $GRUNT_TASKS
+  echo "-----> Found Gruntfile, running grunt $GRUNT_TASK"
+  run_grunt $GRUNT_TASK
 else
   echo "-----> No Gruntfile (Gruntfile.js) found"
 fi
