@@ -113,9 +113,9 @@ function run_npm() {
 
   if [ "${PIPESTATUS[*]}" != "0 0" ]; then
     echo " !     Failed to $command dependencies with npm, retrying once"
-    HOME="$BUILD_DIR" $VENDORED_NODE/bin/node $VENDORED_NPM/cli.js $command --verbose 2>&1 | indent
-      if [ "${PIPESTATUS[*]}" != "0 0" ];
-          echo " !     Failed to $command dependencies with npm"
+    HOME="$BUILD_DIR" $VENDORED_NODE/bin/node $VENDORED_NPM/cli.js $command --verbose 2>&1 | indent;
+      if [ "${PIPESTATUS[*]}" != "0 0" ]; then
+          echo " !     Failed to $command dependencies with npm";
           exit 1
       fi
   fi
