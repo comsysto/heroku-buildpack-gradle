@@ -16,7 +16,7 @@ CACHE_DIR=$2
 
 GRUNT_TASK="heroku"
 
-GRADLE_DIST="gradle-1.7"
+GRADLE_DIST="gradle-1.9"
 GRADLE_TASK="installApp"
 
 NODE_VERSION="0.10.17"
