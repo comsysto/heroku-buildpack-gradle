@@ -184,5 +184,3 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
 
-# setup newrelic as startup param (this is ugly ...)
-echo 'export JAVA_OPTIONS="${JAVA_OPTIONS} -javaagent:$BUILD_DIR/newrelic/newrelic.jar"' >> $PROFILE_PATH
