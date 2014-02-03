@@ -5,7 +5,7 @@
 set -e
 
 # debug
-set -x
+# set -x
 
 
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
